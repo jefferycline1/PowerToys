@@ -1,12 +1,10 @@
 #pragma once
 
-#include "json.h"
+#include <common/utils/json.h>
 
 class CSettings
 {
 public:
-    static const int MAX_INPUT_STRING_LEN = 1024;
-
     CSettings();
 
     inline bool GetEnabled()
@@ -49,6 +47,16 @@ public:
     inline void SetPersistState(bool persistState)
     {
         settings.persistState = persistState;
+    }
+
+    inline bool GetUseBoostLib() const
+    {
+        return settings.useBoostLib;
+    }
+
+    inline void SetUseBoostLib(bool useBoostLib)
+    {
+        settings.useBoostLib = useBoostLib;
     }
 
     inline bool GetMRUEnabled() const
@@ -114,6 +122,7 @@ private:
         bool showIconOnMenu{ true };
         bool extendedContextMenuOnly{ false }; // Disabled by default.
         bool persistState{ true };
+        bool useBoostLib{ false }; // Disabled by default.
         bool MRUEnabled{ true };
         unsigned int maxMRUSize{ 10 };
         unsigned int flags{ 0 };
@@ -135,6 +144,3 @@ private:
 };
 
 CSettings& CSettingsInstance();
-
-HRESULT CRenameMRUSearch_CreateInstance(_Outptr_ IUnknown** ppUnk);
-HRESULT CRenameMRUReplace_CreateInstance(_Outptr_ IUnknown** ppUnk);

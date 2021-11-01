@@ -3,11 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO.Abstractions;
 using System.Reflection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Wox.Plugin.Logger;
 
 namespace Wox.Infrastructure
@@ -80,7 +81,14 @@ namespace Wox.Infrastructure
 
         public static string Formatted<T>(this T t)
         {
-            var formatted = JsonConvert.SerializeObject(t, Formatting.Indented, new StringEnumConverter());
+            var formatted = JsonSerializer.Serialize(t, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Converters =
+                {
+                    new JsonStringEnumConverter(),
+                },
+            });
 
             return formatted;
         }
@@ -116,6 +124,34 @@ namespace Wox.Infrastructure
             };
 
             return Process.Start(processStartInfo);
+        }
+
+        public static bool OpenInShell(string path, string arguments = null, string workingDir = null, bool runAsAdmin = false)
+        {
+            using (var process = new Process())
+            {
+                process.StartInfo.FileName = path;
+                process.StartInfo.WorkingDirectory = string.IsNullOrWhiteSpace(workingDir) ? string.Empty : workingDir;
+                process.StartInfo.Arguments = string.IsNullOrWhiteSpace(arguments) ? string.Empty : arguments;
+
+                if (runAsAdmin)
+                {
+                    process.StartInfo.Verb = "RunAs";
+                }
+
+                process.StartInfo.UseShellExecute = true;
+
+                try
+                {
+                    process.Start();
+                    return true;
+                }
+                catch (Win32Exception ex)
+                {
+                    Log.Exception($"Unable to open {path}: {ex.Message}", ex, MethodBase.GetCurrentMethod().DeclaringType);
+                    return false;
+                }
+            }
         }
     }
 }

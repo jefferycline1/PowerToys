@@ -8,9 +8,11 @@ steps:
   clean: true
 
 - task: NuGetToolInstaller@0
-  displayName: Ensure NuGet 5.5.0
+  displayName: Ensure NuGet 5.8.0
   inputs:
-    versionSpec: 5.5.0
+    versionSpec: 5.8.0
+
+#- template: .\..\..\..\restore-dependencies.yml
 
 - task: VisualStudioTestPlatformInstaller@1
   displayName: Ensure VSTest Platform
@@ -28,6 +30,44 @@ steps:
   displayName: 'Build PowerToys.sln'
   inputs:
     solution: '**\PowerToys.sln'
+    vsVersion: 16.0
+    platform: '$(BuildPlatform)'
+    configuration: '$(BuildConfiguration)'
+    msbuildArgs: ${{ parameters.additionalBuildArguments }}
+    maximumCpuCount: true
+
+- task: NuGetCommand@2
+  displayName: Restore NuGet packages for BugReportTool.sln
+  inputs:
+    command: restore
+    feedsToUse: config
+    configPath: NuGet.config
+    restoreSolution: tools\BugReportTool\BugReportTool.sln
+    restoreDirectory: '$(Build.SourcesDirectory)\tools\BugReportTool\packages'
+
+- task: VSBuild@1
+  displayName: 'Build BugReportTool.sln'
+  inputs:
+    solution: '**\BugReportTool.sln'
+    vsVersion: 16.0
+    platform: '$(BuildPlatform)'
+    configuration: '$(BuildConfiguration)'
+    msbuildArgs: ${{ parameters.additionalBuildArguments }}
+    maximumCpuCount: true
+
+- task: NuGetCommand@2
+  displayName: Restore NuGet packages for WebcamReportTool.sln
+  inputs:
+    command: restore
+    feedsToUse: config
+    configPath: NuGet.config
+    restoreSolution: tools\WebcamReportTool\WebcamReportTool.sln
+    restoreDirectory: '$(Build.SourcesDirectory)\tools\WebcamReportTool\packages'
+
+- task: VSBuild@1
+  displayName: 'Build WebcamReportTool.sln'
+  inputs:
+    solution: '**\WebcamReportTool.sln'
     vsVersion: 16.0
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
@@ -72,37 +112,47 @@ steps:
     msbuildArgs: ${{ parameters.additionalBuildArguments }}
     maximumCpuCount: true
 
-
 # directly not doing WinAppDriver testing
 - task: VSTest@2
-  displayName: 'Run .Net Core Tests'
+  displayName: 'MS Tests'
   inputs:
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-      **\Microsoft.Plugin.Folder.UnitTest.dll
+      **\UnitTests-SvgThumbnailProvider.dll
+      **\UnitTests-PdfThumbnailProvider.dll
+      **\Microsoft.PowerToys.Settings.UI.UnitTests.dll
+      **\UnitTests-MarkdownPreviewHandler.dll
+      **\UnitTests-PdfPreviewHandler.dll
+      **\UnitTests-SvgPreviewHandler.dll
+      **\UnitTests-PreviewHandlerCommon.dll
+      **\PreviewPaneUnitTests.dll
+      **\Microsoft.PowerToys.Run.Plugin.Registry.UnitTests.dll
+      **\UnitTest-ColorPickerUI.dll
+      **\Microsoft.Interop.Tests.dll
+      **\ImageResizer.Test.dll
+      **\Community.PowerToys.Run.Plugin.UnitConverter.UnitTest.dll
+      **\Microsoft.Plugin.Folder.UnitTests.dll
       **\Microsoft.Plugin.Program.UnitTests.dll
-      **\Microsoft.Plugin.Calculator.UnitTest.dll
+      **\Microsoft.PowerToys.Run.Plugin.Calculator.UnitTest.dll
       **\Microsoft.Plugin.Uri.UnitTests.dll
       **\Wox.Test.dll
-      **\*Microsoft.PowerToys.Settings.UI.UnitTests.dll
-      **\UnitTest-ColorPickerUI.dll
+      **\Microsoft.PowerToys.Run.Plugin.System.UnitTests.dll     
+      **\Microsoft.PowerToys.Run.Plugin.WindowsTerminal.UnitTests.dll
       !**\obj\**
-# .NetFramework assemblies
+
+# Native dlls
 - task: VSTest@2
-  displayName: 'Run .Net Framework Tests'
+  displayName: 'Native Tests'
   inputs:
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-      **\ImageResizer.Test.dll
-      **\KeyboardManagerTest.dll
+      **\KeyboardManagerEngineTest.dll
+      **\KeyboardManagerEditorTest.dll
       **\UnitTests-CommonLib.dll
-      **\PreviewPaneUnitTests.dll #this is the markdown tests
-      **\UnitTests-PreviewHandlerCommon.dll
-      **\UnitTests-SvgPreviewHandler.dll
+      **\PowerRenameUnitTests.dll
       **\powerpreviewTest.dll
       !**\obj\**
-#      **\PowerRenameUnitTests.dll

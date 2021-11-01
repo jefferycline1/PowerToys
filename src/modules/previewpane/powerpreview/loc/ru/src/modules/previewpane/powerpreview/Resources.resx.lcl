@@ -106,6 +106,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";Pdf_Thumbnail_Provider_Settings_Description" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Pdf Thumbnail Provider]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Поставщик эскизов PDF.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";Prevpane_Md_Settings_Description" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Markdown Previewer]]></Val>
@@ -124,11 +133,29 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";Prevpane_Pdf_Settings_Description" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[PDF Previewer]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Предпросмотр PDF]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Prevpane_Pdf_Settings_Displayname" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[PDF Previewer]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Предпросмотр PDF]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";Prevpane_Svg_Settings_Description" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Svg Previewer]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Средство просмотра SVG]]></Val>
+            <Val><![CDATA[Предпросмотр SVG]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -137,7 +164,7 @@
         <Str Cat="Text">
           <Val><![CDATA[SVG Previewer]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Средство просмотра SVG]]></Val>
+            <Val><![CDATA[Предпросмотр SVG]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

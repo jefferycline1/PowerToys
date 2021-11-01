@@ -92,7 +92,7 @@ namespace Microsoft.Plugin.Program.Storage
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Intentially keeping the process alive>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Intentionally keeping the process alive>")]
         private void OnAppRenamed(object sender, RenamedEventArgs e)
         {
             string oldPath = e.OldFullPath;
@@ -100,7 +100,7 @@ namespace Microsoft.Plugin.Program.Storage
 
             string extension = Path.GetExtension(newPath);
             Win32Program.ApplicationType appType = Win32Program.GetAppTypeFromPath(newPath);
-            Programs.Win32Program newApp = Programs.Win32Program.GetAppFromPath(newPath);
+            Programs.Win32Program newApp = Win32Program.GetAppFromPath(newPath);
             Programs.Win32Program oldApp = null;
 
             // Once the shortcut application is renamed, the old app does not exist and therefore when we try to get the FullPath we get the lnk path instead of the exe path
@@ -111,7 +111,7 @@ namespace Microsoft.Plugin.Program.Storage
             {
                 if (appType == Win32Program.ApplicationType.ShortcutApplication)
                 {
-                    oldApp = new Win32Program() { Name = Path.GetFileNameWithoutExtension(e.OldName), ExecutableName = newApp.ExecutableName, FullPath = newApp.FullPath };
+                    oldApp = new Win32Program() { Name = Path.GetFileNameWithoutExtension(e.OldName), ExecutableName = Path.GetFileName(e.OldName), FullPath = newApp.FullPath };
                 }
                 else if (appType == Win32Program.ApplicationType.InternetShortcutApplication)
                 {
@@ -124,13 +124,20 @@ namespace Microsoft.Plugin.Program.Storage
             }
             catch (Exception ex)
             {
-                Log.Exception($"OnAppRenamed-{extension}Program|{oldPath}|Unable to create program from {oldPath}", ex, GetType());
+                Log.Exception($"OnAppRenamed-{extension} Program|{e.OldName}|Unable to create program from {oldPath}", ex, GetType());
             }
 
             // To remove the old app which has been renamed and to add the new application.
             if (oldApp != null)
             {
-                Remove(oldApp);
+                if (string.IsNullOrWhiteSpace(oldApp.Name) || string.IsNullOrWhiteSpace(oldApp.ExecutableName) || string.IsNullOrWhiteSpace(oldApp.FullPath))
+                {
+                    Log.Error($"Old app was not initialized properly. OldFullPath: {e.OldFullPath}; OldName: {e.OldName}; FullPath: {e.FullPath}", GetType());
+                }
+                else
+                {
+                    Remove(oldApp);
+                }
             }
 
             if (newApp != null)
@@ -236,6 +243,7 @@ namespace Microsoft.Plugin.Program.Storage
         public void IndexPrograms()
         {
             var applications = Programs.Win32Program.All(_settings);
+            Log.Info($"Indexed {applications.Count} win32 applications", GetType());
             SetList(applications);
         }
 

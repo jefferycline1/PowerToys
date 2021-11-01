@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.IO;
 using System.Linq;
 
 namespace Microsoft.Plugin.Folder.Sources
@@ -78,6 +79,23 @@ namespace Microsoft.Plugin.Folder.Sources
 
         public static string Expand(string search)
         {
+            if (search == null)
+            {
+                throw new ArgumentNullException(nameof(search));
+            }
+
+            if (search[0] == '\\' && (search.Length == 1 || search[1] != '\\'))
+            {
+                // Absolute path of system drive: \Windows\System32
+                search = Path.Combine(Path.GetPathRoot(Environment.SystemDirectory), search.Substring(1));
+            }
+            else if (search[0] == '~')
+            {
+                // User home
+                var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                search = search.Length > 1 ? Path.Combine(home, search.Substring(2)) : home;
+            }
+
             return Environment.ExpandEnvironmentVariables(search);
         }
     }

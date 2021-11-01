@@ -10,11 +10,11 @@
     <Disp Icon="Expand" Expand="true" Disp="true" LocTbl="false" />
     <Item ItemId=";Strings" ItemType="0" PsrId="211" Leaf="false">
       <Disp Icon="Str" Disp="true" LocTbl="false" />
-      <Item ItemId=";Add_Key_Remap_Button" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";Add_Key_Remap_Button" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Add Key Remap]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Dodaj ponowne mapowanie klawiszy]]></Val>
+            <Val><![CDATA[Dodaj mapowanie ponowne klawisza]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -23,7 +23,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Add Shortcut Remapping]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Dodaj ponowne mapowanie skrótu]]></Val>
+            <Val><![CDATA[Dodaj mapowanie ponowne skrótu]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -77,12 +77,12 @@
         <Str Cat="Text">
           <Val><![CDATA[Delete Remapping]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Usuń ponowne mapowanie]]></Val>
+            <Val><![CDATA[Usuń mapowanie ponowne]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";ERRORMESSAGE_DISABLEASACTIONKEY" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";ERRORMESSAGE_DISABLEASACTIONKEY" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Disable can not be an action or a modifier key]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -114,10 +114,13 @@
       </Item>
       <Item ItemId=";EditKeyboard_OrphanedDialogTitle" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The following keys are unassigned and you won't be able to use them:]]></Val>
+          <Val><![CDATA[The following keys have been reassigned and you won't be able to use them for their original assignment:]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Następujące klawisze są nieprzypisane i nie będzie można ich używać:]]></Val>
+            <Val><![CDATA[Ponownie przypisano następujące klawisze i nie będzie można za ich pomocą wykonywać pierwotnie przypisanych akcji:]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The following keys are unassigned and you won't be able to use them:]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -125,12 +128,12 @@
         <Str Cat="Text">
           <Val><![CDATA[Some of the keys could not be remapped. Do you want to continue anyway?]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można ponownie zamapować niektórych klawiszy. Czy mimo to chcesz kontynuować?]]></Val>
+            <Val><![CDATA[Nie można zamapować ponownie niektórych klawiszy. Czy mimo to chcesz kontynuować?]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";EditKeyboard_SourceHeader" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";EditKeyboard_SourceHeader" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Key:]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -152,7 +155,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Remap keys]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ponowne mapowanie kluczy]]></Val>
+            <Val><![CDATA[Mapowanie ponowne kluczy]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -191,7 +194,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Some of the shortcuts could not be remapped. Do you want to continue anyway?]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można ponownie zamapować niektórych skrótów. Czy mimo to chcesz kontynuować?]]></Val>
+            <Val><![CDATA[Nie można zamapować ponownie niektórych skrótów. Czy mimo to chcesz kontynuować?]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -227,16 +230,16 @@
         <Str Cat="Text">
           <Val><![CDATA[Remap shortcuts]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ponowne mapowanie skrótów]]></Val>
+            <Val><![CDATA[Mapowanie ponowne skrótów]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";ErrorMessage_ConflictingModifierKey" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";ErrorMessage_ConflictingModifierKey" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Cannot remap this key as it conflicts with another remapped key]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można ponownie zamapować tego klawisza, ponieważ powoduje to konflikt z innym ponownie zamapowanym klawiszem]]></Val>
+            <Val><![CDATA[Nie można zamapować ponownie tego klawisza, ponieważ powoduje to konflikt z innym ponownie zamapowanym klawiszem]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -245,7 +248,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Cannot remap this shortcut as it conflicts with another remapped shortcut]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można ponownie zamapować tego skrótu, ponieważ powoduje to konflikt z innym ponownie zamapowanym skrótem]]></Val>
+            <Val><![CDATA[Nie można zamapować ponownie tego skrótu, ponieważ powoduje to konflikt z innym zamapowanym ponownie skrótem]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -254,7 +257,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Cannot remap from/to Ctrl Alt Del]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można ponownie zamapować z/na Ctrl Alt Del]]></Val>
+            <Val><![CDATA[Nie można zamapować ponownie z/na Ctrl Alt Del]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -272,21 +275,21 @@
         <Str Cat="Text">
           <Val><![CDATA[Cannot remap a shortcut to itself]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można ponownie zamapować skrótu na niego samego]]></Val>
+            <Val><![CDATA[Nie można zamapować ponownie skrótu na niego samego]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";ErrorMessage_MappedToSameKey" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";ErrorMessage_MappedToSameKey" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Cannot remap a key to itself]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można ponownie zamapować klawisza na niego samego]]></Val>
+            <Val><![CDATA[Nie można zamapować ponownie klawisza na niego samego]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";ErrorMessage_MaxShortcutSize" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";ErrorMessage_MaxShortcutSize" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Shortcuts can only have up to 2 modifier keys]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -299,7 +302,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Remapping successful]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ponowne mapowanie powiodło się]]></Val>
+            <Val><![CDATA[Mapowanie ponowne powiodło się]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -308,16 +311,16 @@
         <Str Cat="Text">
           <Val><![CDATA[Some remappings were not applied]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Niektóre ponowne mapowania nie zostały zastosowane]]></Val>
+            <Val><![CDATA[Niektóre mapowania ponowne nie zostały zastosowane]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";ErrorMessage_SameKeyPreviouslyMapped" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";ErrorMessage_SameKeyPreviouslyMapped" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Cannot remap a key more than once]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można ponownie zamapować klawisza więcej niż raz]]></Val>
+            <Val><![CDATA[Nie można zamapować ponownie klawisza więcej niż raz]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -326,7 +329,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Cannot remap a shortcut more than once for the same target app]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można ponownie zamapować skrótu więcej niż raz dla tej samej aplikacji docelowej]]></Val>
+            <Val><![CDATA[Nie można zamapować ponownie skrótu więcej niż raz dla tej samej aplikacji docelowej]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -335,12 +338,12 @@
         <Str Cat="Text">
           <Val><![CDATA[Failed to save the remappings]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można zapisać ponownych mapowań]]></Val>
+            <Val><![CDATA[Nie można zapisać mapowań ponownych]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";ErrorMessage_ShortcutAtleast2Keys" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";ErrorMessage_ShortcutAtleast2Keys" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Shortcut must have atleast 2 keys]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -349,7 +352,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";ErrorMessage_ShortcutMaxOneActionKey" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";ErrorMessage_ShortcutMaxOneActionKey" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Shortcut cannot have more than one action key]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -367,7 +370,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";ErrorMessage_ShortcutOneActionKey" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";ErrorMessage_ShortcutOneActionKey" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Shortcut must contain an action key]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -376,7 +379,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";ErrorMessage_ShortcutStartWithModifier" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";ErrorMessage_ShortcutStartWithModifier" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Shortcut must start with a modifier key]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -385,20 +388,20 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";ErrorMessage_WinL" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";ErrorMessage_WinL" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Cannot remap from/to Win L]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nie można ponownie zamapować z/na Win L]]></Val>
+            <Val><![CDATA[Nie można zamapować ponownie z/na Win L]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";Key_DropDown_Combobox" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";Key_DropDown_Combobox" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Key]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Klucz]]></Val>
+            <Val><![CDATA[Klawisz]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Key Drop Down]]></Val>
@@ -424,7 +427,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";RegisterClassFailed_ErrorMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";RegisterClassFailed_ErrorMessage" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Windows registration failed!]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -451,7 +454,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";TypeKey_Header" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";TypeKey_Header" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Key Pressed:]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -460,7 +463,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";TypeKey_Title" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";TypeKey_Title" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Press a key on selected keyboard:]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -469,7 +472,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";TypeShortcut_Header" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";TypeShortcut_Header" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Keys Pressed:]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -478,7 +481,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";TypeShortcut_Title" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";TypeShortcut_Title" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Press the keys in shortcut:]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -487,11 +490,11 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";Type_Button" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";Type_Button" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Type]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Typ]]></Val>
+            <Val><![CDATA[Naciśnij]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

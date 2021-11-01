@@ -8,9 +8,6 @@ using FancyZonesEditor.Models;
 
 namespace FancyZonesEditor
 {
-    /// <summary>
-    /// Interaction logic for Window2.xaml
-    /// </summary>
     public partial class GridEditorWindow : EditorWindow
     {
         public GridEditorWindow()
@@ -18,14 +15,15 @@ namespace FancyZonesEditor
             InitializeComponent();
 
             KeyUp += GridEditorWindow_KeyUp;
+            KeyDown += ((App)Application.Current).App_KeyDown;
 
-            _stashedModel = (GridLayoutModel)(EditorOverlay.Current.DataContext as GridLayoutModel).Clone();
+            _stashedModel = (GridLayoutModel)(App.Overlay.CurrentDataContext as GridLayoutModel).Clone();
         }
 
         protected new void OnCancel(object sender, RoutedEventArgs e)
         {
             base.OnCancel(sender, e);
-            GridLayoutModel model = EditorOverlay.Current.DataContext as GridLayoutModel;
+            GridLayoutModel model = App.Overlay.CurrentDataContext as GridLayoutModel;
             _stashedModel.RestoreTo(model);
         }
 
@@ -35,8 +33,16 @@ namespace FancyZonesEditor
             {
                 OnCancel(sender, null);
             }
+
+            ((App)Application.Current).App_KeyUp(sender, e);
         }
 
         private GridLayoutModel _stashedModel;
+
+        // This is required to fix a WPF rendering bug when using custom chrome
+        private void EditorWindow_ContentRendered(object sender, System.EventArgs e)
+        {
+            InvalidateVisual();
+        }
     }
 }

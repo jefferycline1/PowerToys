@@ -1,10 +1,9 @@
 #pragma once
 
-#include <common/json.h>
+#include <common/utils/json.h>
 
 struct GeneralSettings
 {
-    bool isPackaged;
     bool isStartupEnabled;
     std::wstring startupDisabledReason;
     std::map<std::wstring, bool> isModulesEnabledMap;

@@ -4,9 +4,8 @@
 
 using System;
 using System.Windows;
-using System.Windows.Interactivity;
 using System.Windows.Media.Animation;
-using ColorPicker.Constants;
+using Microsoft.Xaml.Behaviors;
 
 namespace ColorPicker.Behaviors
 {
@@ -42,16 +41,14 @@ namespace ColorPicker.Behaviors
 
             var opacityAppear = new DoubleAnimation(0d, 1d, duration)
             {
-                EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut },
-            };
-
-            var resize = new DoubleAnimation(0d, WindowConstant.PickerWindowWidth, duration)
-            {
-                EasingFunction = new ExponentialEase() { EasingMode = EasingMode.EaseOut },
+                EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut },
             };
 
             AssociatedObject.BeginAnimation(UIElement.OpacityProperty, opacityAppear);
-            AssociatedObject.BeginAnimation(FrameworkElement.WidthProperty, resize);
+
+            // force re-evaluation of tooltip size
+            AssociatedObject.SizeToContent = SizeToContent.Manual;
+            AssociatedObject.SizeToContent = SizeToContent.WidthAndHeight;
         }
 
         private void Hide()
@@ -59,10 +56,8 @@ namespace ColorPicker.Behaviors
             var duration = new Duration(TimeSpan.FromMilliseconds(1));
 
             var opacityAppear = new DoubleAnimation(0d, duration);
-            var resize = new DoubleAnimation(0d, duration);
 
             AssociatedObject.BeginAnimation(UIElement.OpacityProperty, opacityAppear);
-            AssociatedObject.BeginAnimation(FrameworkElement.WidthProperty, resize);
         }
     }
 }

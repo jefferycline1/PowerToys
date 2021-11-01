@@ -6,16 +6,31 @@ Names are in alphabetical order based on first name.
 
 ## High impact community members
 
+### [@davidegiacometti](https://github.com/davidegiacometti) - [Davide Giacometti](https://www.linkedin.com/in/davidegiacometti/)
+Davide has helped fix multiple bugs, added new features, as well as help us with the ARM64 effort by porting applications to .NET Core.
+
+### [@htcfreek](https://github.com/htcfreek) - Heiko
+Heiko has helped triaging, discussing, and creating a substantial number of issues and contributed features/fixes to PowerToys Run.
+
+### [@jsoref](https://github.com/jsoref) - [Josh Soref](https://check-spelling.dev/)
+Helping keep our spelling correct :)
+
 ### [@Niels9001](https://github.com/niels9001/) - [Niels Laute](https://nielslaute.com/)
 
-Niels has helped drive large sums of our update toward a new [consistent and modern UX](https://github.com/microsoft/PowerToys/issues/891). This includes the [launcher work](https://github.com/microsoft/PowerToys/issues/44) and [icon design](https://github.com/microsoft/PowerToys/issues/1118).
+Niels has helped drive large sums of our update toward a new [consistent and modern UX](https://github.com/microsoft/PowerToys/issues/891). This includes the [launcher work](https://github.com/microsoft/PowerToys/issues/44), color picker UX update and [icon design](https://github.com/microsoft/PowerToys/issues/1118).
 
 ### [@riverar](https://github.com/riverar) - [Rafael Rivera](https://withinrafael.com/)
 
 Rafael has helped do the [upgrade from CppWinRT 1.x to 2.0](https://github.com/microsoft/PowerToys/issues/1907).  He directly provided feedback to the CppWinRT team for bugs from this migration as well.
 
 ### [@royvou](https://github.com/royvou)
-Roy has helped out contributing a features to PowerToys Run
+Roy has helped out contributing multiple features to PowerToys Run
+
+### [@TobiasSekan](https://github.com/TobiasSekan) - Tobias Sekan
+Tobias Sekan has helped out contributing features to PowerToys Run such as Settings plugin, Registry plugin
+
+### [@ThiefZero](https://github.com/ThiefZero)
+ThiefZero has helped out contributing a features to PowerToys Run such as the unit converter plugin
 
 ## Open source projects
 
@@ -49,17 +64,18 @@ Image Resizer is from Brice.
 
 PowerRename is from Chris's SmartRename and icon rendering for SVGs in File Explorer
 
+### [@dend](https://github.com/dend/) - Den Delimarsky
+
+PowerToys Awake is a tool to keep your computer awake.
+
 ### [@martinchrzan](https://github.com/martinchrzan/) - Martin Chrzan
 
 Color Picker is from Martin.
 
-<!--
-@alekhyareddy28 
-@jyuwono 
-@laviusmotileng-ms 
-@ryanbodrug-microsoft 
-@saahmedm
-@somil55
-@traies 
-@udit3333
--->
+### [@oldnewthing](https://github.com/oldnewthing) - Raymond Chen
+
+Find My Mouse is based on Raymond Chen's SuperSonar.
+
+### Microsoft InVEST team
+
+This amazing team helped PowerToys develop PowerToys Run and Keyboard manager as well as update our Settings to v2.  @alekhyareddy28, @arjunbalgovind, @jyuwono @laviusmotileng-ms, @ryanbodrug-microsoft, @saahmedm, @somil55, @traies, @udit3333

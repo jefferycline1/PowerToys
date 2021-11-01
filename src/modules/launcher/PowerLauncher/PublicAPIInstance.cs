@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation
+// Copyright (c) Microsoft Corporation
 // The Microsoft Corporation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -6,14 +6,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Windows;
 using ManagedCommon;
+using Microsoft.PowerToys.Common.UI;
+using Microsoft.Toolkit.Uwp.Notifications;
 using PowerLauncher.Helper;
+using PowerLauncher.Plugin;
 using PowerLauncher.ViewModel;
-using Wox.Core.Plugin;
-using Wox.Infrastructure;
+using Windows.UI.Notifications;
 using Wox.Infrastructure.Image;
 using Wox.Plugin;
+using Wox.Plugin.Logger;
 
 namespace Wox
 {
@@ -33,6 +37,16 @@ namespace Wox
             _themeManager = themeManager ?? throw new ArgumentNullException(nameof(themeManager));
             _themeManager.ThemeChanged += OnThemeChanged;
             WebRequest.RegisterPrefix("data", new DataWebRequestFactory());
+
+            DesktopNotificationManagerCompat.RegisterActivator<LauncherNotificationActivator>();
+            try
+            {
+                DesktopNotificationManagerCompat.RegisterAumidAndComServer<LauncherNotificationActivator>("PowerToysRun");
+            }
+            catch (System.UnauthorizedAccessException ex)
+            {
+                Log.Exception("Exception calling RegisterAumidAndComServer. Notifications not available.", ex, MethodBase.GetCurrentMethod().DeclaringType);
+            }
         }
 
         public void ChangeQuery(string query, bool requery = false)
@@ -76,6 +90,22 @@ namespace Wox
             Application.Current.Dispatcher.Invoke(() =>
             {
                 MessageBox.Show(subTitle, title);
+            });
+        }
+
+        public void ShowNotification(string text, string secondaryText = null)
+        {
+            var builder = new ToastContentBuilder().AddText(text);
+
+            if (!string.IsNullOrWhiteSpace(secondaryText))
+            {
+                builder.AddText(secondaryText);
+            }
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var toast = new ToastNotification(builder.GetToastContent().GetXml());
+                DesktopNotificationManagerCompat.CreateToastNotifier().Show(toast);
             });
         }
 

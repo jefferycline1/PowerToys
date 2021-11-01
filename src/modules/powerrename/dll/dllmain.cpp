@@ -3,16 +3,14 @@
 #include <interface/powertoy_module_interface.h>
 #include <settings.h>
 #include <trace.h>
-#include <common/settings_objects.h>
-#include <common/common.h>
+#include <common/SettingsAPI/settings_objects.h>
+#include <common/utils/resources.h>
 #include "Generated Files/resource.h"
 #include <atomic>
 #include <dll/PowerRenameConstants.h>
 
 std::atomic<DWORD> g_dwModuleRefCount = 0;
 HINSTANCE g_hInst = 0;
-
-extern "C" IMAGE_DOS_HEADER __ImageBase;
 
 class CPowerRenameClassFactory : public IClassFactory
 {
@@ -123,9 +121,10 @@ STDAPI DllCanUnloadNow(void)
 //
 STDAPI DllGetClassObject(_In_ REFCLSID clsid, _In_ REFIID riid, _Outptr_ void** ppv)
 {
+    HRESULT hr = E_FAIL;
     *ppv = NULL;
     CPowerRenameClassFactory* pClassFactory = new CPowerRenameClassFactory(clsid);
-    HRESULT hr = pClassFactory->QueryInterface(riid, ppv);
+    hr = pClassFactory->QueryInterface(riid, ppv);
     pClassFactory->Release();
     return hr;
 }
@@ -234,6 +233,11 @@ public:
             GET_RESOURCE_STRING(IDS_EXTENDED_MENU_INFO),
             CSettingsInstance().GetExtendedContextMenuOnly());
 
+        settings.add_bool_toggle(
+            L"bool_use_boost_lib",
+            GET_RESOURCE_STRING(IDS_USE_BOOST_LIB),
+            CSettingsInstance().GetUseBoostLib());
+
         return settings.serialize_to_buffer(buffer, buffer_size);
     }
 
@@ -252,6 +256,7 @@ public:
             CSettingsInstance().SetMaxMRUSize(values.get_int_value(L"int_max_mru_size").value());
             CSettingsInstance().SetShowIconOnMenu(values.get_bool_value(L"bool_show_icon_on_menu").value());
             CSettingsInstance().SetExtendedContextMenuOnly(values.get_bool_value(L"bool_show_extended_menu").value());
+            CSettingsInstance().SetUseBoostLib(values.get_bool_value(L"bool_use_boost_lib").value());
             CSettingsInstance().Save();
 
             Trace::SettingsChanged();

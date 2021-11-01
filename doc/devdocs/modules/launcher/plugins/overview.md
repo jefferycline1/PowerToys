@@ -5,7 +5,7 @@ The following basic functions are common to each of the plugins. They perform so
 Each plugin implements the `IPlugin` interface which comprises of the `Init()` and `Query()` functions.
 
 ### `Init`
-- The `Init()` function initializes the context, storage and settings of each plugin. This is equivalent to a contructor and is the first function to be called in the `Main.cs` file for each plugin.
+- The `Init()` function initializes the context, storage and settings of each plugin. This is equivalent to a constructor and is the first function to be called in the `Main.cs` file for each plugin.
 
 ### `Query`
 - For every query that the user enters into PT Run, the `PluginManager.cs` executes the `Query()` function in the `Main.cs` file corresponding to each Plugin.
@@ -33,3 +33,6 @@ Each plugin implements the `IPlugin` interface which comprises of the `Init()` a
 - The user query is executed against each of the plugins and the result list view is updated with results from each of the plugins.
 - The ordering of the results is based on the `Score` of each Result.
 - Each plugin assigns a score to a result based on it's relevance. The results with higher scores are displayed higher in the list view and vice versa.
+
+## Plugin settings 
+Plugin settings that are editable from the settings are stored in `PowerToys Run\settings.json`. In the very first run, those settings are populated from plugin' `plugin.json` file. Unlike Wox we do not support multiple action keywords. Instead, we have `ActionKeyword` and `IsGlobal` options.

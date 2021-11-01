@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using ManagedCommon;
+using Microsoft.PowerToys.Common.UI;
 
 namespace Wox.Plugin
 {
@@ -73,5 +74,12 @@ namespace Wox.Plugin
         /// Get all loaded plugins
         /// </summary>
         List<PluginPair> GetAllPlugins();
+
+        /// <summary>
+        /// Show toast notification
+        /// </summary>
+        /// <param name="text">Notification main text</param>
+        /// <param name="secondaryText">Notification optional text</param>
+        void ShowNotification(string text, string secondaryText = null);
     }
 }

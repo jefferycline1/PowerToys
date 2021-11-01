@@ -12,7 +12,6 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
 using Common.ComInterlop;
 using Common.Utilities;
-using Microsoft.PowerToys.Telemetry;
 using PreviewHandlerCommon;
 
 namespace Microsoft.PowerToys.ThumbnailHandler.Svg
@@ -31,14 +30,14 @@ namespace Microsoft.PowerToys.ThumbnailHandler.Svg
         public IStream Stream { get; private set; }
 
         /// <summary>
-        ///  The maxium dimension (width or height) thumbnail we will generate.
+        ///  The maximum dimension (width or height) thumbnail we will generate.
         /// </summary>
         private const uint MaxThumbnailSize = 10000;
 
         /// <summary>
         /// Captures an image representation of browser contents.
         /// </summary>
-        /// <param name="browser">The WebBrowser instance rendring the SVG.</param>
+        /// <param name="browser">The WebBrowser instance rendering the SVG.</param>
         /// <param name="rectangle">The client rectangle to capture from.</param>
         /// <param name="backgroundColor">The default background color to apply.</param>
         /// <returns>A Bitmap representing the browser contents.</returns>
@@ -119,6 +118,21 @@ namespace Microsoft.PowerToys.ThumbnailHandler.Svg
                 var svg = browser.Document.GetElementsByTagName("svg").Cast<HtmlElement>().FirstOrDefault();
                 if (svg != null)
                 {
+                    var viewBox = svg.GetAttribute("viewbox");
+                    if (viewBox != null)
+                    {
+                        // Update the svg style to override any width or height explicit settings
+                        // Setting to 100% width and height will allow to scale to our intended size
+                        // Otherwise, we would end up with a scaled up blurry image.
+                        svg.Style = "width:100%;height:100%";
+
+                        // Wait for the browser to render the content.
+                        while (browser.IsBusy || browser.ReadyState != WebBrowserReadyState.Complete)
+                        {
+                            Application.DoEvents();
+                        }
+                    }
+
                     // Update the size of the browser control to fit the SVG
                     // in the visible viewport.
                     browser.Width = svg.OffsetRectangle.Width;

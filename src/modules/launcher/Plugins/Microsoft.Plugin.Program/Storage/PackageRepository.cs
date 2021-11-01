@@ -9,12 +9,13 @@ using Microsoft.Plugin.Program.Logger;
 using Microsoft.Plugin.Program.Programs;
 using Windows.ApplicationModel;
 using Wox.Infrastructure.Storage;
+using Wox.Plugin.Logger;
 
 namespace Microsoft.Plugin.Program.Storage
 {
     /// <summary>
     /// A repository for storing packaged applications such as UWP apps or appx packaged desktop apps.
-    /// This repository will also monitor for changes to the PackageCatelog and update the repository accordingly
+    /// This repository will also monitor for changes to the PackageCatalog and update the repository accordingly
     /// </summary>
     internal class PackageRepository : ListRepository<UWPApplication>, IProgramRepository
     {
@@ -80,6 +81,7 @@ namespace Microsoft.Plugin.Program.Storage
             var support = Environment.OSVersion.Version.Major >= windows10.Major;
 
             var applications = support ? Programs.UWP.All() : Array.Empty<UWPApplication>();
+            Log.Info($"Indexed {applications.Length} packaged applications", GetType());
             SetList(applications);
         }
 

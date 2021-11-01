@@ -1,9 +1,10 @@
-﻿// Copyright (c) Microsoft Corporation
+// Copyright (c) Microsoft Corporation
 // The Microsoft Corporation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using FancyZonesEditor.Models;
 
 namespace FancyZonesEditor
@@ -22,6 +23,26 @@ namespace FancyZonesEditor
         {
             InitializeComponent();
             Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
+            KeyDown += CanvasEditor_KeyDown;
+        }
+
+        private void CanvasEditor_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                e.Handled = true;
+                App.Overlay.FocusEditorWindow();
+            }
+        }
+
+        public void FocusZone()
+        {
+            if (Preview.Children.Count > 0)
+            {
+                var canvas = Preview.Children[0] as CanvasZone;
+                canvas.FocusZone();
+            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -32,7 +53,15 @@ namespace FancyZonesEditor
                 _model = model;
                 UpdateZoneRects();
 
-                model.PropertyChanged += OnModelChanged;
+                _model.PropertyChanged += OnModelChanged;
+            }
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            if (_model != null)
+            {
+                _model.PropertyChanged -= OnModelChanged;
             }
         }
 
@@ -46,6 +75,10 @@ namespace FancyZonesEditor
 
         private void UpdateZoneRects()
         {
+            var workArea = App.Overlay.WorkArea;
+            Preview.Width = workArea.Width;
+            Preview.Height = workArea.Height;
+
             UIElementCollection previewChildren = Preview.Children;
             int previewChildrenCount = previewChildren.Count;
             while (previewChildrenCount < _model.Zones.Count)
@@ -54,6 +87,7 @@ namespace FancyZonesEditor
                 {
                     Model = _model,
                 };
+
                 Preview.Children.Add(zone);
                 previewChildrenCount++;
             }

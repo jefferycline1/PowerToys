@@ -23,16 +23,16 @@
         <Str Cat="Text">
           <Val><![CDATA[Only show the PowerRename menu item on the extended context menu (Shift + Right-click).]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[只在扩展的关联菜单中显示 PowerRename 菜单项(Shift + 右键单击)。]]></Val>
+            <Val><![CDATA[只在扩展的上下文菜单中显示 PowerRename 菜单项(Shift + 右键单击)。]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";Icon_Context_Menu" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";Icon_Context_Menu" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Show icon on context menu.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[在关联菜单上显示图标。]]></Val>
+            <Val><![CDATA[在上下文菜单上显示图标。]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -46,7 +46,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";PowerRename" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";PowerRename" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Po&werRename]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -55,7 +55,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";PowerRename_App_Name" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";PowerRename_App_Name" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[PowerRename]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -77,7 +77,16 @@
         <Str Cat="Text">
           <Val><![CDATA[A Windows Shell extension for more advanced bulk renaming using search and replace or regular expressions.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[用于使用“搜索和替换”或正则表达式进行更高级的批量重命名的 Windows Shell 扩展。]]></Val>
+            <Val><![CDATA[使用“搜索和替换”或正则表达式进行高级批量重命名操作的 Windows Shell 扩展]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";Use_Boost_Lib" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Use Boost library (provides extended features but may use different regex syntax).]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[使用增强库(提供了扩展的功能，但可能使用不同的正则表达式语法)。]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
